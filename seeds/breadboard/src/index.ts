@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { Board } from './board.js';
 export { Board } from "./board.js";
 export { Node } from "./node.js";
 export { LogProbe } from "./log.js";
@@ -18,3 +19,5 @@ export type {
   BreadboardNode,
   OptionalIdConfiguration,
 } from "./types.js";
+
+(window as any)['breadboard'] = {Board};

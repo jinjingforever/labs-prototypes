@@ -53,8 +53,8 @@ export const loadGraph = async (path?: string, ref?: string) => {
   if (path && typeof process === "undefined")
     throw new Error("Unable to use `path` when not running in node");
   if (path) {
-    const { readFile } = await import("node:fs/promises");
-    return JSON.parse(await readFile(path, "utf-8"));
+    // const { readFile } = await import("node:fs/promises");
+    // return JSON.parse(await readFile(path, "utf-8"));
   }
   if (!ref) throw new Error("To include, we need a path or a $ref");
   const response = await fetch(ref);
@@ -511,9 +511,9 @@ export class Board implements Breadboard {
    * @returns - a new `Board` instance.
    */
   static async load($ref: string, slots?: BreadboardSlotSpec): Promise<Board> {
-    const url = new URL($ref, new URL(import.meta.url));
-    const path = url.protocol === "file:" ? $ref : undefined;
-    const graph = await loadGraph(path, $ref);
+    // const url = new URL($ref, new URL(import.meta.url));
+    // const path = url.protocol === "file:" ? $ref : undefined;
+    const graph = await loadGraph(undefined, $ref);
     const board = await Board.fromGraphDescriptor(graph);
     board.#slots = slots || {};
     return board;
